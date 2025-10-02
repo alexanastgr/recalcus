@@ -1,3 +1,9 @@
+import { type AppDispatch } from "../store";
+import { calculatorActions } from "../store/calcSlice";
+
+// hooks
+import { useDispatch } from "react-redux";
+
 type BtnType = "number" | "operator";
 
 interface BtnProps {
@@ -6,12 +12,18 @@ interface BtnProps {
 }
 
 function Button({ type, value }: BtnProps) {
+  const dispatch = useDispatch<AppDispatch>();
+
   const handleClick = () => {
-    // empty for now
+    if (type === "number") {
+      dispatch(calculatorActions.inputNumber(value));
+    } else if (type === "operator") {
+      dispatch(calculatorActions.inputOperator(value));
+    }
   };
 
   const isNumber = "bg-gradient-to-b from-gray-200 to-gray-300";
-  const isOperat = "bg-gradient-to-b from-orange-400 to-orange-600";
+  const isOperat = "bg-gradient-to-b from-orange-300 to-orange-500";
   const btnClass = type === "number" ? isNumber : isOperat;
 
   return (
