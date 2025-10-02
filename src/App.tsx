@@ -1,17 +1,26 @@
-import { useRef } from "react";
 import Draggable from "react-draggable";
+import { type RootState } from "./store";
+
+// hooks
+import { useSelector } from "react-redux";
+import { useRef } from "react";
 
 // components
 import Button from "./components/Button";
 
 function App() {
   const ref = useRef<HTMLDivElement>(null);
+
+  const display = useSelector(
+    (state: RootState) => state.calculator.currentValue
+  );
+
   return (
     <Draggable nodeRef={ref} handle=".body" cancel=".btn">
       <div className="p-4 w-64 bg-white rounded-2xl shadow-lg body" ref={ref}>
         {/* screen */}
         <div className="bg-black text-white text-right p-4 rounded mb-2 text-xl font-mono">
-          0
+          {display}
         </div>
 
         {/* buttons layout */}
