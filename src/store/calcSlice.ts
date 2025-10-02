@@ -33,6 +33,33 @@ const calculatorSlice = createSlice({
       state.operator = null;
       state.previousValue = Null;
     },
+
+    calculate: (state) => {
+      if (state.operator && state.previousValue) {
+        const prev = parseFloat(state.previousValue);
+        const curr = parseFloat(state.currentValue);
+        let result = 0;
+
+        switch (state.operator) {
+          case "+":
+            result = prev + curr;
+            break;
+          case "-":
+            result = prev - curr;
+            break;
+          case "*":
+            result = prev * curr;
+            break;
+          case "/":
+            result = prev / curr;
+            break;
+        }
+
+        state.currentValue = result.toString();
+        state.operator = null;
+        state.previousValue = null;
+      }
+    },
   },
 });
 
