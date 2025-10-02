@@ -29,9 +29,9 @@ const calculatorSlice = createSlice({
     },
 
     clear: (state) => {
-      state.currentValue = 0;
+      state.currentValue = "0";
       state.operator = null;
-      state.previousValue = Null;
+      state.previousValue = null;
     },
 
     calculate: (state) => {
