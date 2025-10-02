@@ -27,6 +27,12 @@ const calculatorSlice = createSlice({
       state.previousValue = state.currentValue;
       state.currentValue = "0";
     },
+
+    clear: (state) => {
+      state.currentValue = 0;
+      state.operator = null;
+      state.previousValue = Null;
+    },
   },
 });
 
